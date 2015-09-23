@@ -21,14 +21,19 @@ function randomPlay() {
 /*           Write Your Code Below            */
 ////////////////////////////////////////////////
 
+
+//function to get either rock,paper, or scissors from the player
 function getPlayerMove(move) {
     return move || getInput();
 }
 
+//function that generates random move for the computer
 function getComputerMove(move) {
     return move || randomPlay();
 }
 
+
+//function that determines winner between the player and computer
 function getWinner(playerMove,computerMove) {
     var winner;
      if (playerMove == 'rock' && computerMove == 'rock'){
@@ -53,6 +58,8 @@ function getWinner(playerMove,computerMove) {
     return winner;
 }
 
+
+//function that plays rock paper scissors until either the player or computer has scored five points
 function playToFive() {
     console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
