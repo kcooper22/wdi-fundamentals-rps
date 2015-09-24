@@ -1,3 +1,4 @@
+
 ////////////////////////////////////////////////
 /*   Provided Code - Please Don't Edit   */
 ////////////////////////////////////////////////
@@ -36,25 +37,15 @@ function getComputerMove(move) {
 //function that determines winner between the player and computer
 function getWinner(playerMove,computerMove) {
     var winner;
-     if (playerMove == 'rock' && computerMove == 'rock'){
+     if (playerMove === computerMove){
         winner = 'tie';
-    }   else if (playerMove == 'rock' && computerMove == 'paper'){
+    }   else if ((playerMove === 'rock' && computerMove === 'paper') || (playerMove === 'scissors' && computerMove === 'rock') || (playerMove === 'paper' && computerMove === 'scissors')){
         winner = 'computer';
-    }   else if (playerMove == 'rock' && computerMove == 'scissors') {
+    }   else if ((playerMove === 'rock' && computerMove === 'scissors') || (playerMove === 'paper' && computerMove === 'rock') || (playerMove === 'scissors' && computerMove === 'paper')) {
         winner = 'player';
-    }   else if (playerMove == 'scissors' && computerMove == 'scissors'){
-        winner = 'tie';
-    }   else if (playerMove == 'scissors' && computerMove == 'rock'){
-        winner = 'computer';
-    }   else if (playerMove == 'scissors' && computerMove == 'paper') {
-        winner = 'player';
-    }   else if (playerMove == 'paper' && computerMove == 'paper'){
-        winner = 'tie';
-    }   else if (playerMove == 'paper' && computerMove == 'scissors'){
-        winner = 'computer';
-    }   else if (playerMove == 'paper' && computerMove == 'rock') {
-        winner = 'player';
-    }   else winner = 'error';
+    }   else {
+        winner = 'error';
+    }
     return winner;
 }
 
@@ -65,26 +56,32 @@ function playToFive() {
     var playerWins = 0;
     var computerWins = 0;
 
-    var playerMove;
-    var computerMove;
-    var winner;
+    var playMove;
+    var compMove;
+    var victor;
 
-    while (playerWins<5 && computerWins<5){
-       winner = getWinner(getPlayerMove(),getComputerMove())
-        if (winner === 'player'){
+    while ((playerWins<5) && (computerWins<5)){
+        compMove = getPlayerMove();
+        playMove = getComputerMove();
+        console.log("computer: " + compMove);
+        console.log("player: " + playMove);
+       victor = getWinner(playMove, compMove);
+ 
+        if (victor === 'player'){
             playerWins +=1;
         }
-        else if (winner === 'computer'){
+        else if (victor === 'computer'){
             computerWins +=1;
         }   
-        else{ 
+        else { 
             computerWins += 0;
-            playerWins+= 0;
+            playerWins += 0;
         }
-        console.log('Player chose ' + playerMove + " while Computer chose " + computerMove);
+        console.log('Player chose ' + playMove + " while Computer chose " + compMove);
         console.log('The score is currently ' + playerWins + ' to ' + computerWins + '\n');
     }
     return [playerWins, computerWins];
 }
 
 playToFive();
+
